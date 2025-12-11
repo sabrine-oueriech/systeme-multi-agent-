@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏛️ Système Multi-Agents d'Enchères</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header avec gradient moderne -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="logo">🏛️ AUCTION SYSTEM</h1>
+                    <p class="subtitle">Plateforme Multi-Agents en Temps Réel</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="activeAuctions">0</div>
+                            <div class="stat-label">Enchères</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="activeAgents">0</div>
+                            <div class="stat-label">Agents</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="totalVolume">0€</div>
+                            <div class="stat-label">Volume</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation tabs -->
+    <nav class="tabs">
+        <div class="container">
+            <button class="tab active" data-tab="auctions">🎯 Enchères en Direct</button>
+            <button class="tab" data-tab="agents">👥 Agents Actifs</button>
+            <button class="tab" data-tab="analytics">📊 Analytics</button>
+            <button class="tab" data-tab="logs">📝 Journal</button>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Onglet Enchères -->
+            <section id="auctions-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>🎯 Enchères en Direct</h2>
+                    <div class="status-badge live">🔴 LIVE</div>
+                </div>
+                <div id="auctions-grid" class="auctions-grid">
+                    <!-- Les enchères seront ajoutées dynamiquement ici -->
+                </div>
+            </section>
+
+            <!-- Onglet Agents -->
+            <section id="agents-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>👥 Agents Actifs</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Tous</button>
+                        <button class="filter-btn" data-filter="aggressive">Agressifs</button>
+                        <button class="filter-btn" data-filter="conservative">Conservateurs</button>
+                        <button class="filter-btn" data-filter="intelligent">Intelligents</button>
+                    </div>
+                </div>
+                <div id="agents-list" class="agents-list">
+                    <!-- Les agents seront ajoutés dynamiquement ici -->
+                </div>
+            </section>
+
+            <!-- Onglet Analytics -->
+            <section id="analytics-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>📊 Analytics & Statistiques</h2>
+                </div>
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <h3>📈 Évolution des Prix</h3>
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>👥 Activité des Agents</h3>
+                        <canvas id="agentChart"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>🏆 Classement</h3>
+                        <div id="leaderboard" class="leaderboard">
+                            <!-- Classement dynamique -->
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>📊 Statistiques Globales</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number">0</span>
+                                <span class="stat-text">Offres totales</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">0€</span>
+                                <span class="stat-text">Prix moyen</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">0</span>
+                                <span class="stat-text">Enchères terminées</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">0%</span>
+                                <span class="stat-text">Taux de réussite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Onglet Logs -->
+            <section id="logs-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>📝 Journal d'Activité</h2>
+                    <div class="log-controls">
+                        <button class="btn-secondary" id="clearLogs">🗑️ Effacer</button>
+                        <button class="btn-secondary" id="pauseLogs">⏸️ Pause</button>
+                    </div>
+                </div>
+                <div id="logs-container" class="logs-container">
+                    <!-- Les logs seront ajoutés dynamiquement ici -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Auction System - Multi-Agent Platform • Powered by JADE Framework</p>
+            <div class="connection-status">
+                <span class="status-dot" id="connectionStatus"></span>
+                <span id="connectionText">Connexion...</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal détails enchère -->
+    <div id="auctionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody">
+                <!-- Détails de l'enchère -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/websocket.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
